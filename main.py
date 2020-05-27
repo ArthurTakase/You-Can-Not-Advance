@@ -1,5 +1,5 @@
 # You Can (Not) Advance (You're (Not) Alone 2.0)
-# Authour : Takase
+# Author : Takase
 # Fichier principal
 
 import discord
