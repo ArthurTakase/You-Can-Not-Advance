@@ -7,7 +7,7 @@ import asyncio
 from param import *
 from help import *
 
-TOKEN = 'NzE0OTY0NTg4OTc3OTc5NDgz.Xs6u4Q.lImKoJDblVMIsHdavuEz30cFXbM'
+TOKEN = 'your token'
 
 class MyClient(discord.Client):
     async def on_ready(self):
