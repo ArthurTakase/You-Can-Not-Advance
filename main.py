@@ -8,7 +8,7 @@ from param import *
 from help import *
 from private_code import *
 
-TOKEN = get_token()
+TOKEN = get_token() #Modifier get_token() par votre Token
 
 class MyClient(discord.Client):
     async def on_ready(self):
