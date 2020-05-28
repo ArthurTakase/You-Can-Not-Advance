@@ -60,7 +60,7 @@ async def prefixe_change(prefixe, message):
 
     if len(msg) == 1 :
         msg_embed = {
-            "color": 16768614, #Couleur de la barre
+            "color": 6158690, #Couleur de la barre
             "fields": [
                 #Zone 1
                 {"name": "Edit Préfixe",
@@ -89,7 +89,22 @@ async def prefixe_change(prefixe, message):
         return
 
     if prefixe[0] == msg[1] :
-        await message.channel.send("Le préfixe que vous voulez mettre est déjà en place sur ce serveur.")
+        msg_embed = {
+            "color": 16768614, #Couleur de la barre
+            "fields": [
+                #Zone 1
+                {
+                "name": "¯\_(ツ)_/¯",
+                "value": f"""le préfixe `{prefixe[0]}` est déjà en place sur le serveur."""
+                }],
+            "footer":
+                {
+                "icon_url": "https://cdn.discordapp.com/attachments/487002983557627936/715329727757549568/portrait2.jpg",
+                "text": "Bot by Takase"
+                },
+            "title": "On radote ?"
+            }
+        await message.channel.send(embed=discord.Embed.from_dict(msg_embed)) #-----------------------------------------------------------------
         return
     else :
         text_file = open("files\\"+str(id_serveur)+"\\param_bot.txt", "w")

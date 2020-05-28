@@ -12,6 +12,7 @@ from help import *
 from private_code import *
 from poll import *
 from game import *
+from admin import *
 
 TOKEN = get_token() #Modifier get_token() par votre Token
 
@@ -48,7 +49,7 @@ class MyClient(discord.Client):
         print('Logged in as')
         print(self.user.name)
         print('------')
-        await self.set_status()
+        await client.change_presence(activity=discord.Game(name="$$$what"))
 
     async def on_message(self, message):
         """Fonction qui se lance à chauqe message posté sur le serveur."""
@@ -78,6 +79,9 @@ class MyClient(discord.Client):
 
             if command_id[0] == prefixe + "8ball":
                 await yes_no_ball(prefixe, message)
+
+            if command_id[0] == prefixe + "clear":
+                await clear(prefixe, message)
 
         except Exception as e: #Si il y a une erreur dans les commandes, l'erreur est donnée sur discord directement.
             msg_embed = {

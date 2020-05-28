@@ -12,7 +12,7 @@ async def poll_help(prefixe, message):
     Ne retourne rien."""
 
     msg_embed = {
-        "color": 16768614, #Couleur de la barre
+        "color": 6158690, #Couleur de la barre
         "fields": [
             #Zone 1
             {
@@ -37,7 +37,7 @@ async def poll_create(prefixe, message):
     """Fonction permettant la création de sondages
     :prefixe: prefixe du serveur
     Ne retourne rien."""
-    
+
     msg_full = message.content
     msg = msg_full.split(" ")
 
@@ -86,7 +86,7 @@ async def poll_create(prefixe, message):
                 "text": "Bot by Takase"
                 },
             "title": f"""{question}\n""",
-            "description": f"""<@{message.author.id}> se pose une question."""
+            "description": f"""<@{message.author.id}> se pose la question."""
             }
         msg_send = await message.channel.send(embed=discord.Embed.from_dict(msg_embed))
 
