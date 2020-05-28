@@ -6,8 +6,9 @@ import discord
 import asyncio
 from param import *
 from help import *
+from private_code import *
 
-TOKEN = 'NzE0OTY0NTg4OTc3OTc5NDgz.Xs6u4Q.lImKoJDblVMIsHdavuEz30cFXbM'
+TOKEN = get_token()
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -17,8 +18,7 @@ class MyClient(discord.Client):
         print(self.user.name)
         print('------')
         #Statut du bot
-        await client.change_presence(status=discord.Status.idle,
-                                    activity=discord.Game("type $$$what"))
+        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="$$$what"))
 
     async def on_message(self, message):
         """Fonction qui se lance à chauqe message posté sur le serveur."""

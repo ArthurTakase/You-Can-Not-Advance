@@ -8,7 +8,8 @@ import os
 
 
 async def prefixe_file(message):
-    """Fonction créant les dossiers"""
+    """Fonction créant les dossiers et qui determine le prefixe du serveur actuel.
+    Retourne le prefixe su serveur"""
 
     id_serveur = message.guild.id #Récupération de l'ID du serveur
 
@@ -44,6 +45,7 @@ async def prefixe_show(prefixe, message):
         }
     }
     await message.channel.send(embed=discord.Embed.from_dict(msg_embed))
+    return
 
 
 async def prefixe_change(prefixe, message):
@@ -77,7 +79,7 @@ async def prefixe_change(prefixe, message):
             "fields": [
                 {"name": "Edit Préfixe",
                 "value": "Initialisation des fichiers. Veuillez refaire la commande."}]}
-        await message.channel.send(embed=discord.Embed.from_dict(msg_embed))#"Initialisation des fichiers. Veuillez refaire la commande.")
+        await message.channel.send(embed=discord.Embed.from_dict(msg_embed)) #"Initialisation des fichiers. Veuillez refaire la commande.")
         return
 
     if prefixe[0] == msg[1] :
