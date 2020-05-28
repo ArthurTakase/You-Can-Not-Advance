@@ -13,6 +13,8 @@ from private_code import *
 from poll import *
 from game import *
 from admin import *
+from rank import *
+from create_file import *
 
 TOKEN = get_token() #Modifier get_token() par votre Token
 
@@ -52,7 +54,7 @@ class MyClient(discord.Client):
         await client.change_presence(activity=discord.Game(name="$$$what"))
 
     async def on_message(self, message):
-        """Fonction qui se lance à chauqe message posté sur le serveur."""
+        """Fonction qui se lance à chaque message posté sur le serveur."""
 
         try :
             await self.set_status()
@@ -63,7 +65,7 @@ class MyClient(discord.Client):
             else :
                 command_id = message.content.split(" ", 1)
 
-            prefixe = str(await prefixe_file(message)) #Récupération du préfixe du serveur
+            prefixe = str(await create_files(message)) #Récupération du préfixe du serveur
 
             if command_id[0] == "$$$what": #Commande permettant de voir le préfixe du serveur
                 await prefixe_show(prefixe, message)
@@ -85,6 +87,9 @@ class MyClient(discord.Client):
 
             if command_id[0] == prefixe + "clear":
                 await clear(prefixe, message)
+
+            if command_id[0] == prefixe + "profil":
+                await profil(prefixe, message)
 
         except Exception as e: #Si il y a une erreur dans les commandes, l'erreur est donnée sur discord directement.
             msg_embed = {

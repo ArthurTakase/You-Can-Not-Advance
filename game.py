@@ -1,11 +1,10 @@
 # You Can (Not) Advance (You're (Not) Alone 2.0)
 # Author : Takase
-# COmmandes mini jeux nuls
+# Commandes mini jeux nuls
 
 import discord
 import asyncio
 from random import choice
-from create_file import *
 
 async def yes_no_ball(prefixe, message):
     """Fonction lançant un 8ball avec interface Json.
@@ -16,6 +15,7 @@ async def yes_no_ball(prefixe, message):
         #Lecture du fichier avec les reponses
         text_file = open("files\\8ball.txt", "r")
         answer_list = text_file.read().split("\n")
+        text_file.close()
         if answer_list[-1] == "": #Si le dernier élément est vide (merci atom)
             answer_list.pop(-1)
 
@@ -72,11 +72,11 @@ async def russian(prefixe, message):
     :prefixe: prefixe du serveur.
     Ne retourne rien"""
 
-    await create_files(message) #On s'assure que les fichiers soient bien créés
     id_serveur = message.guild.id #Récupération de l'ID du serveur
 
     text_file = open("files\\"+str(id_serveur)+"\\russian.txt", "r")
     russian_text = text_file.read().split("\n") #Récupération de ce qui se trouve dans le fichier Russian.txt
+    text_file.close()
     if russian_text[-1] == "": #Si la dernière ligne est vide
         russian_text.pop(-1)
 
@@ -118,6 +118,7 @@ async def russian(prefixe, message):
         #Réécriture des valeurs de Russian.txt
         text_file = open("files\\"+str(id_serveur)+"\\russian.txt","w+")
         text_file.write("False\nFalse\nFalse\nFalse\nFalse\nTrue")
+        text_file.close()
     else :
         msg_embed = {
             "color": 6158690, #Couleur de la barre
@@ -142,3 +143,4 @@ async def russian(prefixe, message):
         #Suppression d'un False dans Russian.txt
         text_file = open("files\\"+str(id_serveur)+"\\russian.txt","w+")
         text_file.write("False\n"*(russian_text.count("False")-1)+"True")
+        text_file.close()

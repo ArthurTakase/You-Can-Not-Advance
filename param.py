@@ -7,28 +7,6 @@ import asyncio
 import os
 
 
-async def prefixe_file(message):
-    """Fonction créant les dossiers et qui determine le prefixe du serveur actuel.
-    Retourne le prefixe su serveur"""
-
-    id_serveur = message.guild.id #Récupération de l'ID du serveur
-
-    try : #On regarde si le fichier "param_bot.txt" existe déjà pour le serveur
-        text_file = open("files\\"+str(id_serveur)+"\\param_bot.txt", "r")
-        prefixe = text_file.read().split("\n")
-        return prefixe[0]
-    except : #Si le fichier existe, on le crée
-        try :  #On essaye de créer le dossier du serveur
-            os.mkdir("./files/"+str(id_serveur))
-        except :
-            pass
-        text_file = open("files\\"+str(id_serveur)+"\\param_bot.txt","w+") #Création du fichier texte
-        text_file.write("!")
-        prefixe = "!"
-
-        return prefixe
-
-
 async def prefixe_show(prefixe, message):
     """Fonction qui donne le préfixe du serveur dans un message embed.
     :prefixe: prefixe du serveur

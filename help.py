@@ -21,12 +21,17 @@ async def help_bot(prefixe, message):
             #Zone 2
             {
             "name": "Misc",
-            "value": f"""`$$$what`   `{prefixe}help`  `{prefixe}poll`  `{prefixe}8ball`"""
+            "value": f"""`$$$what`   `{prefixe}help`  `{prefixe}poll`  `{prefixe}8ball`  `{prefixe}`russian"""
             },
             #Zone 3
             {
             "name": "Administration",
             "value": f"""`{prefixe}clear`"""
+            },
+            #Zone 4
+            {
+            "name": "utilisateurs",
+            "value": f"""`{prefixe}profil`"""
             }],
         "footer":
             {
