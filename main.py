@@ -80,6 +80,9 @@ class MyClient(discord.Client):
             if command_id[0] == prefixe + "8ball":
                 await yes_no_ball(prefixe, message)
 
+            if command_id[0] == prefixe + "russian":
+                await russian(prefixe, message)
+
             if command_id[0] == prefixe + "clear":
                 await clear(prefixe, message)
 
