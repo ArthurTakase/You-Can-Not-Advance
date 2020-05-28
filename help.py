@@ -19,7 +19,7 @@ async def help_bot(prefixe, message):
             #Zone 2
             {
             "name": "Misc",
-            "value": f"""`{prefixe}help`  `$$$what`"""
+            "value": f"""`$$$what`   `{prefixe}help`  `{prefixe}poll`"""
             }],
         "footer":
             {
