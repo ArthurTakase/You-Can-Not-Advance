@@ -30,19 +30,23 @@ class MyClient(discord.Client):
         global nbr_msg
         list = [["Kingdom hearts","Witcher 3"], #Game
                 ["Parasyte", "Evangelion"], #Regarde
-                ["twenty one pilots", "Queen"]] #Ecoute
+                ["twenty one pilots", "Queen"],
+                ["le $$$what", "la puissance"]] #Ecoute
 
         if nbr_msg - 99 == 0: #Nombre de message à poster -1
-            type = randint(0,2)
+            type = randint(0,3)
             if type == 0: #Joue à
                 await client.change_presence(activity=discord.Game(name=choice(list[0])))
             elif type == 1: #Regarde
                 await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=choice(list[1])))
-            else : #Ecoute
+            elif type == 2 : #Ecoute
                 await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=choice(list[2])))
+            else :
+                await client.change_presence(activity=discord.Streaming(name=choice(list[3]), url="https://www.twitch.tv/takaaase"))
             nbr_msg = 0
         else :
             nbr_msg += 1
+
 
     async def on_ready(self):
         """Fonction qui se lance au boot du bot."""
@@ -51,7 +55,9 @@ class MyClient(discord.Client):
         print('Logged in as')
         print(self.user.name)
         print('------')
-        await client.change_presence(activity=discord.Game(name="$$$what"))
+        #await client.change_presence(activity=discord.Game(name="$$$what"))
+        await self.set_status()
+
 
     async def on_message(self, message):
         """Fonction qui se lance à chaque message posté sur le serveur."""

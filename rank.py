@@ -4,6 +4,7 @@
 
 import discord
 import asyncio
+from math import floor, sqrt
 
 async def member_id_score_def(message):
     id_serveur = message.guild.id #Récupération de l'ID du serveur
@@ -43,7 +44,7 @@ async def profil(prefixe, message):
     # Optention de l'index de l'utilisateur dans la liste des utilisateurs
     index = 0
     for i in range (len(member_id_score)):
-        if member_id_score[i][0] == id_member:
+        if member_id_score[i][0] == str(id_member):
             print(i)
             index = i
             break
@@ -67,7 +68,7 @@ async def profil(prefixe, message):
             #Zone 3
             {
             "name": f"Niveau",
-            "value": f"""{member_id_score[index][1]}"""
+            "value": f"""{floor(sqrt(int(member_id_score[index][1])/10))}"""
             },
             #Zone 4
             {

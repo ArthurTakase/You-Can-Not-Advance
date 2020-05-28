@@ -15,7 +15,8 @@ async def create_files(message):
     try : #On regarde si les fichiers existent déjà pour le serveur
         text_file = open("files\\"+str(id_serveur)+"\\russian.txt", "r+") #Test Fichier Russian
         text_file.close()
-        text_file = open("files\\"+str(id_serveur)+"\\rank.txt", "r+") #Test Fichier Rank
+        text_file = open("files\\"+str(id_serveur)+"\\rank.txt", "r") #Test Fichier Rank
+        #Ajout d'un message au compteur
         text_file.close()
         text_file = open("files\\"+str(id_serveur)+"\\param_bot.txt", "r") #Test fichier Prefixe
         prefixe = text_file.read().split("\n")
