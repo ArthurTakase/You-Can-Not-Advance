@@ -7,6 +7,7 @@ import asyncio
 from param import *
 from help import *
 from private_code import *
+from poll import *
 
 TOKEN = get_token() #Modifier get_token() par votre Token
 
@@ -40,6 +41,9 @@ class MyClient(discord.Client):
 
         if command_id[0] == prefixe + "help": #Commande Help
             await help_bot(prefixe, message)
+
+        if command_id[0] == prefixe + "poll": #Commande Help
+            await poll_create(prefixe, message)
 
 
 client = MyClient()
