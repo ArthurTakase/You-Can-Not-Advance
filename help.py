@@ -1,6 +1,6 @@
 # You Can (Not) Advance (You're (Not) Alone 2.0)
 # Author : Takase
-# Help Commandes
+# Commandes Help
 
 import discord
 import asyncio

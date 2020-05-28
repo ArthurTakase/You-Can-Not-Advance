@@ -1,6 +1,6 @@
 # You Can (Not) Advance (You're (Not) Alone 2.0)
 # Author : Takase
-# Edit Bot Commandes
+# Commandes Edit Bot
 
 import discord
 import asyncio
