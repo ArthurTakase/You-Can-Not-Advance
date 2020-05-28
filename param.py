@@ -63,10 +63,12 @@ async def prefixe_change(prefixe, message):
                 "value": "Permet d'éditer le préfixe des commandes pour le serveur."},
                 #Zone 2
                 {"name": "Utilisation",
-                "value": f"""{prefixe}prefixe_change [nouveau préfixe]"""}],
+                "value": f"""`{prefixe}prefixe_change [nouveau préfixe]`"""}],
             "footer": {
                 "icon_url": "https://cdn.discordapp.com/attachments/487002983557627936/715329727757549568/portrait2.jpg",
-                "text": "Bot by Takase"}}
+                "text": "Bot by Takase"},
+            "title": "Détails de la commande"
+            }
         await message.channel.send(embed=discord.Embed.from_dict(msg_embed))
         return
 

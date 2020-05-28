@@ -42,7 +42,7 @@ class MyClient(discord.Client):
         if command_id[0] == prefixe + "help": #Commande Help
             await help_bot(prefixe, message)
 
-        if command_id[0] == prefixe + "poll": #Commande Help
+        if command_id[0] == prefixe + "poll": #Commande sondage
             await poll_create(prefixe, message)
 
 
