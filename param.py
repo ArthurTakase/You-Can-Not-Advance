@@ -30,10 +30,12 @@ async def prefixe_file(message):
 
 
 async def prefixe_show(prefixe, message):
-    """Fonction qui donne le préfixe du serveur dans un message embed."""
+    """Fonction qui donne le préfixe du serveur dans un message embed.
+    :prefixe: prefixe du serveur
+    Ne retourne rien."""
 
     msg_embed = {
-        "color": 16768614,
+        "color": 6158690,
         "fields": [{
             "name": "Préfixe",
             "value": f"""Le préfixe pour ce serveur est `{prefixe}`.
@@ -49,7 +51,9 @@ async def prefixe_show(prefixe, message):
 
 
 async def prefixe_change(prefixe, message):
-    """Fonction permettant de changer le le préfixe du bot."""
+    """Fonction permettant de changer le le préfixe du bot.
+    :prefixe: prefixe du serveur
+    Ne retourne rien."""
 
     id_serveur = message.guild.id #Récupération de l'ID du serveur
     msg = message.content.split(" ")

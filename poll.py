@@ -7,6 +7,10 @@ import asyncio
 from random import choice
 
 async def poll_help(prefixe, message):
+    """Fonction affichant le Help de la commande sondage.
+    :prefixe: prefixe du serveur
+    Ne retourne rien."""
+
     msg_embed = {
         "color": 16768614, #Couleur de la barre
         "fields": [
@@ -30,7 +34,10 @@ async def poll_help(prefixe, message):
     return
 
 async def poll_create(prefixe, message):
-    """Fonction permettant la création de sondages"""
+    """Fonction permettant la création de sondages
+    :prefixe: prefixe du serveur
+    Ne retourne rien."""
+    
     msg_full = message.content
     msg = msg_full.split(" ")
 

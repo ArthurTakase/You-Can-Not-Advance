@@ -6,10 +6,12 @@ import discord
 import asyncio
 
 async def help_bot(prefixe, message):
-    """Fonction affichant les commandes disponibles dans le bot."""
+    """Fonction affichant les commandes disponibles dans le bot.
+    :prefixe: prefixe du serveur
+    Ne retourne rien."""
 
     msg_embed = {
-        "color": 16768614, #Couleur de la barre
+        "color": 6158690, #Couleur de la barre
         "fields": [
             #Zone 1
             {
@@ -19,7 +21,7 @@ async def help_bot(prefixe, message):
             #Zone 2
             {
             "name": "Misc",
-            "value": f"""`$$$what`   `{prefixe}help`  `{prefixe}poll`"""
+            "value": f"""`$$$what`   `{prefixe}help`  `{prefixe}poll`  `{prefixe}8ball`"""
             }],
         "footer":
             {
