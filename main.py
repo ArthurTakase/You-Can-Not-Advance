@@ -56,7 +56,7 @@ class MyClient(discord.Client):
         print(self.user.name)
         print('------')
         #await client.change_presence(activity=discord.Game(name="$$$what"))
-        await self.set_status()
+        await client.change_presence(activity=discord.Streaming(name="$$$what", url="https://www.twitch.tv/takaaase"))
 
 
     async def on_message(self, message):
@@ -85,17 +85,20 @@ class MyClient(discord.Client):
             if command_id[0] == prefixe + "poll": #Commande sondage
                 await poll_create(prefixe, message)
 
-            if command_id[0] == prefixe + "8ball":
+            if command_id[0] == prefixe + "8ball": #Commande boule magique
                 await yes_no_ball(prefixe, message)
 
-            if command_id[0] == prefixe + "russian":
+            if command_id[0] == prefixe + "russian": #Commande roulette russe
                 await russian(prefixe, message)
 
-            if command_id[0] == prefixe + "clear":
+            if command_id[0] == prefixe + "clear": #Commande Clear ADMIN ONLY
                 await clear(prefixe, message)
 
-            if command_id[0] == prefixe + "profil":
+            if command_id[0] == prefixe + "profil": #Commande profil
                 await profil(prefixe, message)
+
+            if command_id[0] == prefixe + "rank": #Commande classement des utilisateurs
+                await rank(prefixe, message)
 
         except Exception as e: #Si il y a une erreur dans les commandes, l'erreur est donnée sur discord directement.
             msg_embed = {

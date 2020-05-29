@@ -13,7 +13,7 @@ async def yes_no_ball(prefixe, message):
 
     if len(message.content.split(" ")) != 1 : #Si on pose une question
         #Lecture du fichier avec les reponses
-        text_file = open("files\\8ball.txt", "r")
+        text_file = open("files\\8ball.txt", "r", encoding="utf-8")
         answer_list = text_file.read().split("\n")
         text_file.close()
         if answer_list[-1] == "": #Si le dernier élément est vide (merci atom)
@@ -74,7 +74,7 @@ async def russian(prefixe, message):
 
     id_serveur = message.guild.id #Récupération de l'ID du serveur
 
-    text_file = open("files\\"+str(id_serveur)+"\\russian.txt", "r")
+    text_file = open("files\\"+str(id_serveur)+"\\russian.txt", "r", encoding="utf-8")
     russian_text = text_file.read().split("\n") #Récupération de ce qui se trouve dans le fichier Russian.txt
     text_file.close()
     if russian_text[-1] == "": #Si la dernière ligne est vide
