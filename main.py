@@ -30,8 +30,8 @@ class MyClient(discord.Client):
         global nbr_msg
         list = [["Kingdom hearts","Witcher 3"], #Game
                 ["Parasyte", "Evangelion"], #Regarde
-                ["twenty one pilots", "Queen"],
-                ["le $$$what", "la puissance"]] #Ecoute
+                ["twenty one pilots", "Queen"], #Ecoute
+                ["le $$$what", "la puissance"]] #Streame
 
         if nbr_msg - 99 == 0: #Nombre de message à poster -1
             type = randint(0,3)
@@ -63,7 +63,7 @@ class MyClient(discord.Client):
         """Fonction qui se lance à chaque message posté sur le serveur."""
 
         try :
-            await self.set_status()
+            #await self.set_status()
             #Evite que le bot ne se réponde à lui-même
             if message.author.id == self.user.id:
                 return

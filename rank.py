@@ -58,17 +58,17 @@ async def rank(prefixe, message):
                 #Zone 1
                 {
                 "name": f"""1er""",
-                "value": f"""**{message.guild.get_member(int(member_id_score[0][0])).name}** avec {member_id_score[0][1]} messages"""
+                "value": f"""**<@{int(member_id_score[0][0])}>** avec {member_id_score[0][1]} messages"""
                 },
                 #Zone 2
                 {
                 "name": f"""2ème""",
-                "value": f"""**{message.guild.get_member(int(member_id_score[1][0])).name}** avec {member_id_score[1][1]} messages"""
+                "value": f"""**<@{int(member_id_score[1][0])}>** avec {member_id_score[1][1]} messages"""
                 },
                 #Zone 3
                 {
                 "name": f"""3ème""",
-                "value": f"""**{message.guild.get_member(int(member_id_score[2][0])).name}** avec {member_id_score[2][1]} messages"""
+                "value": f"""**<@{int(member_id_score[2][0])}>** avec {member_id_score[2][1]} messages"""
                 },
                 #Zone 4
                 {
