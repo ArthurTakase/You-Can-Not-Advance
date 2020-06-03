@@ -6,6 +6,73 @@ import discord
 import asyncio
 from math import floor, sqrt
 
+async def set_toogle_alert(message):
+    """Fonction permettant de désactiver les alertes de montée de niveau des utilisateurs du serveur.
+    Ne retourne rien."""
+
+    if message.author.guild_permissions.administrator : # Si la personne est admin
+        id_serveur = message.guild.id # Récupération de l'ID du serveur
+
+        text_file = open("files\\"+str(id_serveur)+"\\param_bot.txt", "r", encoding="utf-8") #Test fichier Prefixe
+        toggle_str = text_file.read().split("\n")
+        text_file.close()
+
+        if toggle_str[1] == "True" :
+            toggle = False
+            toggle_str[1] = "False"
+            msg_embed = {
+                "color": 16768614, #Couleur de la barre
+                "thumbnail": {
+                "url": "https://cdn.discordapp.com/attachments/487002983557627936/717874608723984515/switch-off-icon.png"
+                },
+                "footer":
+                    {
+                    "icon_url": "https://cdn.discordapp.com/attachments/487002983557627936/715329727757549568/portrait2.jpg",
+                    "text": "Bot by Takase"},
+                "title": "Les messages de montée de niveau sont maintenant desactivés."
+                }
+            bot_msg = await message.channel.send(embed=discord.Embed.from_dict(msg_embed))
+        else :
+            toggle = True
+            toggle_str[1] = "True"
+            msg_embed = {
+                "color": 16768614, #Couleur de la barre
+                "thumbnail": {
+                "url": "https://cdn.discordapp.com/attachments/487002983557627936/717874650704773121/switch-on-icon.png"
+                },
+                "footer":
+                    {
+                    "icon_url": "https://cdn.discordapp.com/attachments/487002983557627936/715329727757549568/portrait2.jpg",
+                    "text": "Bot by Takase"},
+                "title": "Les messages de montée de niveau sont maintenant activés."
+                }
+            bot_msg = await message.channel.send(embed=discord.Embed.from_dict(msg_embed))
+
+        text_file = open("files\\"+str(id_serveur)+"\\param_bot.txt", "w", encoding="utf-8") #Test fichier Prefixe
+        text_file.write(toggle_str[0] + "\n" + toggle_str[1])
+        text_file.close()
+
+        return toggle
+
+    else :
+        msg_embed = {
+            "color": 6158690, #Couleur de la barre
+            "fields": [
+                #Zone 1
+                {
+                "name": "Vous n'avez pas les droits",
+                "value": "Pour pouvoir faire cette commande, vous devez être Admin."
+                }],
+            "footer":
+                {
+                "icon_url": "https://cdn.discordapp.com/attachments/487002983557627936/715329727757549568/portrait2.jpg",
+                "text": "Bot by Takase"},
+            "title": "Problèmes"
+            }
+        bot_msg = await message.channel.send(embed=discord.Embed.from_dict(msg_embed))
+        await bot_msg.delete(delay = 4)
+        return
+
 async def member_id_score_def(message):
     """Fonction permettant de diviser le fichier rank.txt en une liste propre.
     Retourne une liste [[id, score], [id, score]]"""
@@ -110,6 +177,8 @@ async def profil(prefixe, message):
             index = i
             break
 
+    level = floor(sqrt(int(member_id_score[index][1])/10))
+
     msg_embed = {
         "color": 16768614, #Couleur de la barre
         "thumbnail": {
@@ -129,7 +198,7 @@ async def profil(prefixe, message):
             #Zone 3
             {
             "name": f"Niveau",
-            "value": f"""**{floor(sqrt(int(member_id_score[index][1])/10))}**"""
+            "value": f"""**{level}** (Prochain niveau : {((level+1)**2)*10 - int(member_id_score[index][1])} messages)"""
             },
             #Zone 4
             {

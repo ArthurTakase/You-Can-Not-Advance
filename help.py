@@ -30,8 +30,8 @@ async def help_bot(prefixe, message):
             },
             #Zone 4
             {
-            "name": "Utilisateurs",
-            "value": f"""`{prefixe}profil`  `{prefixe}rank`"""
+            "name": "Niveaux et autres",
+            "value": f"""`{prefixe}profil`  `{prefixe}rank`  `{prefixe}alert`"""
             }],
         "footer":
             {

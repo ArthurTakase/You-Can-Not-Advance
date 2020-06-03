@@ -82,8 +82,12 @@ class MyClient(discord.Client):
             if command_id[0] == prefixe + "help": #Commande Help
                 await help_bot(prefixe, message)
 
+            #------ Commandes utiles ------
+
             if command_id[0] == prefixe + "poll": #Commande sondage
                 await poll_create(prefixe, message)
+
+            #------ Commandes jeux ------
 
             if command_id[0] == prefixe + "8ball": #Commande boule magique
                 await yes_no_ball(prefixe, message)
@@ -91,14 +95,21 @@ class MyClient(discord.Client):
             if command_id[0] == prefixe + "russian": #Commande roulette russe
                 await russian(prefixe, message)
 
+            #------ Commandes administration ------
+
             if command_id[0] == prefixe + "clear": #Commande Clear ADMIN ONLY
                 await clear(prefixe, message)
+
+            #------ Commandes niveau et profils des utilisateurs ------
 
             if command_id[0] == prefixe + "profil": #Commande profil
                 await profil(prefixe, message)
 
             if command_id[0] == prefixe + "rank": #Commande classement des utilisateurs
                 await rank(prefixe, message)
+
+            if command_id[0] == prefixe + "alert" : #Commande pour désactiver les messages d'alerte ADMIN ONLY
+                await set_toogle_alert(message)
 
         except Exception as e: #Si il y a une erreur dans les commandes, l'erreur est donnée sur discord directement.
             msg_embed = {
