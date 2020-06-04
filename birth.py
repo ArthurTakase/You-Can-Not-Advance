@@ -49,12 +49,12 @@ async def remove_birth(prefixe, message):
     birth_param = await on_file(message)
 
     if not birth_param[0]:
-        await message.channel.send("pas dans le liste")
+        await message.channel.send("pas dans la liste")
         return
     else:
         text_file = open("files\\"+str(id_serveur)+"\\birth.txt", "r",
                          encoding="utf-8")  # Test fichier Anniversaire
-        all_birth = text_file.read().split("\n")
+        all_birth = text_file.read().split("\n")[:-1]
         text_file.close()
 
         text_file = open("files\\"+str(id_serveur)+"\\birth.txt", "w",
