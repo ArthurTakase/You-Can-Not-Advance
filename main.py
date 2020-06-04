@@ -15,6 +15,7 @@ from game import *
 from admin import *
 from rank import *
 from create_file import *
+from birth import *
 
 TOKEN = get_token()  # Modifier get_token() par votre Token
 
@@ -103,7 +104,7 @@ class MyClient(discord.Client):
 
             # ------ Commandes niveau et profils des utilisateurs ------
 
-            if command_id[0] == prefixe + "profil":  # Commande profil
+            if command_id[0] == prefixe + "profile":  # Commande profil
                 await profil(prefixe, message)
 
             if command_id[0] == prefixe + "rank":  # Commande classement des utilisateurs
@@ -111,6 +112,14 @@ class MyClient(discord.Client):
 
             if command_id[0] == prefixe + "alert":  # Commande pour désactiver les messages d'alerte ADMIN ONLY
                 await set_toogle_alert(message)
+
+            # ------ Commandes anniversaire ------
+
+            if command_id[0] == prefixe + "addbirth":  # Ajouter un anniversaire aux données du serveur
+                await add_birth(prefixe, message)
+
+            if command_id[0] == prefixe + "removebirth":  # Retirer un anniversaire des donnéesdu serveur
+                await remove_birth(prefixe, message)
 
         except Exception as e:  # Si il y a une erreur dans les commandes, l'erreur est donnée sur discord directement.
             msg_embed = {
