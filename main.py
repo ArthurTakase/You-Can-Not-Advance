@@ -6,6 +6,7 @@
 import discord
 import asyncio
 from random import choice, randint
+import datetime
 # Import local files
 from param import *
 from help import *
@@ -21,11 +22,40 @@ TOKEN = get_token()  # Modifier get_token() par votre Token
 
 # Variables gloables
 nbr_msg = 0
+is_birth = False
 
 # Objet bot
 
 
 class MyClient(discord.Client):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # create the background task and run it in the background
+        self.bg_task = self.loop.create_task(self.is_birthday())
+
+    async def is_birthday(self):
+        """Fonction regardant si il y a un anniversaire ce jour.
+        Ne retourne rien."""
+
+        global is_birth
+
+        await self.wait_until_ready()
+        while not self.is_closed():
+            return_birth = await is_birth_today()
+            index = len(return_birth)
+
+            for i in range(index):
+                all = return_birth[i].split(" ")
+                print(all)
+                channel = self.get_channel(int(all[2]))  # channel ID goes here
+
+                if all[0] == "True":  # Si il y a un anniversaire
+                    await channel.send("<@" + str(all[1]) + ">")  # Envoyer le message
+                else:  # Si il n'y a pas d'anniversaire
+                    await channel.send("no")
+
+            await asyncio.sleep(1)  # Attendre 24h
 
     async def set_status(self):
         """Fonction permettant de changer de status du bot tous les x messages"""
@@ -123,6 +153,9 @@ class MyClient(discord.Client):
 
             if command_id[0] == prefixe + "nextbirth":  # Voir le prochain anniversaire du serveur
                 await next_birth(prefixe, message)
+
+            if command_id[0] == "anniv":
+                await is_birth_today()
 
         except Exception as e:  # Si il y a une erreur dans les commandes, l'erreur est donnée sur discord directement.
             msg_embed = {

@@ -5,6 +5,7 @@
 import discord
 import asyncio
 import datetime
+from glob import glob
 
 
 async def on_file(message):
@@ -37,6 +38,48 @@ async def on_file(message):
 
     text_file.close()
     return is_in, position
+
+
+async def is_birth_today():
+    """Regarde Si il y a un anniversaire aujourd'hui.
+    Retourne True et les IDs OU False et un élément vide."""
+
+    all_id = [""]
+
+    # all guild id
+    for i in range(len(glob("./files/*/"))):
+        id_serveur = glob("./files/*/")[i].split("\\")[1]  # Récupération de l'ID du serveur
+
+        # Get id channel serveur
+        text_file = open("files\\"+str(id_serveur)+"\\param_bot.txt", "r",
+                         encoding="utf-8")  # Test fichier Anniversaire
+        id_channel = text_file.read().split("\n")[2]
+        text_file.close()
+
+        # Récupération de la date du jour
+        current_day = int(str(datetime.date.today()).split("-")[2])
+        current_month = int(str(datetime.date.today()).split("-")[1])
+
+        text_file = open("files\\"+str(id_serveur)+"\\birth.txt", "r",
+                         encoding="utf-8")  # Test fichier Anniversaire
+
+        # Lecture du fichier des anniversaires
+        all_birth_line = text_file.read().split("\n")
+        all_birth = []
+        for i in range(len(all_birth_line)):
+            all_birth.append(all_birth_line[i].split(" "))
+        all_birth.pop(-1)
+
+        for i in range(len(all_birth)):
+            if int(all_birth[i][1]) == current_day and int(all_birth[i][2]) == current_month:
+                all_id.append("True " + str(all_birth[i][0]) + " " + str(id_channel))
+
+    all_id.pop(0)
+
+    if len(all_id) != 1:
+        return all_id
+    else:
+        return all_id
 
 
 async def next_birth(prefixe, message):
@@ -106,13 +149,6 @@ async def next_birth(prefixe, message):
         "title": "Prochain anniversaire"
     }
     bot_msg = await message.channel.send(embed=discord.Embed.from_dict(msg_embed))
-
-    print(all_birth)
-    print(all_date)
-    print(i)
-    print(current_day, current_month)
-    print("prochain anniversaire :", all_date[index])
-    print(next_id)
 
 
 async def remove_birth(prefixe, message):
