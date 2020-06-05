@@ -17,7 +17,7 @@ async def prefixe_show(prefixe, message):
         "fields": [{
             "name": "Préfixe",
             "value": f"""Le préfixe pour ce serveur est `{prefixe}`.
-            Pour changer de préfixe faite la commande `{prefixe}prefixe_change`.
+            Pour changer de préfixe faite la commande `{prefixe}prefixechange`.
             Tapez `{prefixe}help` pour afficher toutes les commandes."""}],
         "footer": {
             "icon_url": "https://cdn.discordapp.com/attachments/487002983557627936/715329727757549568/portrait2.jpg",
@@ -45,7 +45,7 @@ async def prefixe_change(prefixe, message):
                  "value": "Permet d'éditer le préfixe des commandes pour le serveur."},
                 # Zone 2
                 {"name": "Utilisation",
-                 "value": f"""`{prefixe}prefixe_change [nouveau préfixe]`"""}],
+                 "value": f"""`{prefixe}prefixechange [nouveau préfixe]`"""}],
             "footer": {
                 "icon_url": "https://cdn.discordapp.com/attachments/487002983557627936/715329727757549568/portrait2.jpg",
                 "text": "Bot by Takase"},
@@ -88,7 +88,7 @@ async def prefixe_change(prefixe, message):
         return
     else:
         text_file = open("files\\"+str(id_serveur)+"\\param_bot.txt", "w")
-        text_file.write(msg[1])
+        text_file.write(msg[1] + "\n" + prefixe[1])
         msg_embed = {
             "color": 16768614,  # Couleur de la barre
             "fields": [

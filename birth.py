@@ -39,6 +39,82 @@ async def on_file(message):
     return is_in, position
 
 
+async def next_birth(prefixe, message):
+    """Donne le prochain anniversaire de la Liste.
+    Ne retourne rien.
+    :prefixe: prefixe des commandes du serveur."""
+
+    id_serveur = message.guild.id  # Récupération de l'ID du serveur
+
+    text_file = open("files\\"+str(id_serveur)+"\\birth.txt", "r",
+                     encoding="utf-8")  # Test fichier Anniversaire
+
+    # Récupération de la date du jour
+    current_day = int(str(datetime.date.today()).split("-")[2])
+    current_month = int(str(datetime.date.today()).split("-")[1])
+
+    # Récupération des anniversaires et des ID
+    all_birth_line = text_file.read().split("\n")
+    all_birth = []
+    for i in range(len(all_birth_line)):
+        all_birth.append(all_birth_line[i].split(" "))
+    all_birth.pop(-1)  # On supprime l'élément vide de la liste
+    text_file.close()
+
+    # Tri des anniversaires dans le bon ordre
+    all_date = []
+    for i in range(len(all_birth)+1):
+        if i != len(all_birth):  # Ajout de tous les anniversaires
+            all_date.append("2002-" + str(all_birth[i][2]) + "-" + str(all_birth[i][1]))
+        else:  # Ajout de la date du jour comme repère
+            all_date.append("2002-" + str(current_month) + "-" + str(current_day))
+    all_date.sort()
+
+    # Detection de l'index du jour dans la liste
+    index = 0  # Emplacement du prochain anniversaire
+    for i in range(len(all_date)):
+        if all_date[i] == "2002-" + str(current_month) + "-" + str(current_day):
+            index = i + 1
+    if index >= len(all_date):  # Si index est le dernier élément de la liste
+        index -= len(all_date)-1
+
+    # Date du prochain anniversaire
+    next_day = all_date[index].split("-")[2]
+    next_month = all_date[index].split("-")[1]
+
+    # id du prochain anniversaire
+    next_id = ""
+    for i in range(len(all_birth)):
+        if all_birth[i][1] == next_day and all_birth[i][2] == next_month:
+            next_id = all_birth[i][0]
+
+    msg_embed = {
+        "color": 16768614,  # Couleur de la barre
+        "fields": [
+            # Zone 1
+            {
+                "name": "(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
+                "value": f"""<@{next_id}> le **{next_day}/{next_month}**."""
+            }],
+        "thumbnail": {
+            "url": f"""{message.guild.get_member(int(next_id)).avatar_url}"""
+        },
+        "footer":
+            {
+            "icon_url": "https://cdn.discordapp.com/attachments/487002983557627936/715329727757549568/portrait2.jpg",
+            "text": "Bot by Takase"},
+        "title": "Prochain anniversaire"
+    }
+    bot_msg = await message.channel.send(embed=discord.Embed.from_dict(msg_embed))
+
+    print(all_birth)
+    print(all_date)
+    print(i)
+    print(current_day, current_month)
+    print("prochain anniversaire :", all_date[index])
+    print(next_id)
+
+
 async def remove_birth(prefixe, message):
     """Supprime un anniversaire des données du serveur.
     Ne retourne rien.

@@ -78,7 +78,7 @@ class MyClient(discord.Client):
                 await prefixe_show(prefixe, message)
 
             # Commande permettant de changer le préfixe du serveur
-            if command_id[0] == prefixe + "prefixe_change":
+            if command_id[0] == prefixe + "prefixechange":
                 await prefixe_change(prefixe, message)
 
             if command_id[0] == prefixe + "help":  # Commande Help
@@ -120,6 +120,9 @@ class MyClient(discord.Client):
 
             if command_id[0] == prefixe + "removebirth":  # Retirer un anniversaire des donnéesdu serveur
                 await remove_birth(prefixe, message)
+
+            if command_id[0] == prefixe + "nextbirth":  # Voir le prochain anniversaire du serveur
+                await next_birth(prefixe, message)
 
         except Exception as e:  # Si il y a une erreur dans les commandes, l'erreur est donnée sur discord directement.
             msg_embed = {

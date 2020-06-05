@@ -17,7 +17,7 @@ async def help_bot(prefixe, message):
             # Zone 1
             {
                 "name": "Personnaliser le bot",
-                "value": f"""`{prefixe}prefixe_change`"""
+                "value": f"""`{prefixe}prefixechange`"""
             },
             # Zone 2
             {
@@ -37,7 +37,7 @@ async def help_bot(prefixe, message):
             # Zone 5
             {
                 "name": "Anniversaires",
-                "value": f"""`{prefixe}addbirth`  `{prefixe}removebirth`"""
+                "value": f"""`{prefixe}addbirth`  `{prefixe}removebirth`  `{prefixe}nextbirth`"""
             }],
         "footer":
             {
