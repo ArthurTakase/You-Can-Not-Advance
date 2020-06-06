@@ -95,7 +95,7 @@ async def create_files(message):
         # Fichier Prefixe
         text_file = open("files\\"+str(id_serveur)+"\\param_bot.txt", "w+",
                          encoding="utf-8")  # Création du fichier texte
-        text_file.write("!\nTrue")
+        text_file.write("!\nTrue\n" + str(message.guild.system_channel.id))
         text_file.close()
         prefixe = "!"
         # Fichier Anniversaire

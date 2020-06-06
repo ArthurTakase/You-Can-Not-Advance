@@ -53,7 +53,7 @@ async def set_toogle_alert(message):
 
         text_file = open("files\\"+str(id_serveur)+"\\param_bot.txt",
                          "w", encoding="utf-8")  # Test fichier Prefixe
-        text_file.write(toggle_str[0] + "\n" + toggle_str[1])
+        text_file.write(toggle_str[0] + "\n" + toggle_str[1] + "\n" + str(message.guild.system_channel.id))
         text_file.close()
 
         return toggle

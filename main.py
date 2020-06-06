@@ -10,7 +10,7 @@ import datetime
 # Import local files
 from param import *
 from help import *
-from private_code import *
+#from private_code import *
 from poll import *
 from game import *
 from admin import *
@@ -18,7 +18,7 @@ from rank import *
 from create_file import *
 from birth import *
 
-TOKEN = get_token()  # Modifier get_token() par votre Token
+TOKEN = "NzE0OTY0NTg4OTc3OTc5NDgz.Xtuh-w.gaYOnUeAEv_6qmFDbyex0wxi7ho"  # Modifier get_token() par votre Token
 
 # Variables gloables
 nbr_msg = 0
@@ -47,13 +47,35 @@ class MyClient(discord.Client):
 
             for i in range(index):
                 all = return_birth[i].split(" ")
-                print(all)
                 channel = self.get_channel(int(all[2]))  # channel ID goes here
 
                 if all[0] == "True":  # Si il y a un anniversaire
-                    await channel.send("<@" + str(all[1]) + ">")  # Envoyer le message
+                    msg_embed = {
+                        "color": 16768614,  # Couleur de la barre
+                        "image": {
+                            "url": "https://cdn.discordapp.com/attachments/487002983557627936/718847161256771625/ezgif-6-02ffac5d54fe.gif"
+                        },
+                        "thumbnail": {
+                            "url": "https://cdn.discordapp.com/attachments/487002983557627936/718513439282298960/1399414-birthday-cake-png-pluspngcom-3500-birthday-cake-png-cake-png-3500_3507_preview.png"
+                        },
+                        "fields": [
+                            # Zone 1
+                            {
+                                "name": "(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧",
+                                "value": f"""C'est l'anniversaire de <@{all[1]}> !"""
+                            }],
+                        "footer":
+                            {
+                            "icon_url": "https://cdn.discordapp.com/attachments/487002983557627936/715329727757549568/portrait2.jpg",
+                            "text": "Bot by Takase"
+                        },
+                        "title": "Bon anniversaire !",
+                    }
+                    await channel.send(embed=discord.Embed.from_dict(msg_embed))
+                    await asyncio.sleep(3600)
                 else:  # Si il n'y a pas d'anniversaire
                     await channel.send("no")
+                    await asyncio.sleep(60)
 
             await asyncio.sleep(1)  # Attendre 24h
 

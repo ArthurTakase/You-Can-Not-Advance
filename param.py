@@ -88,7 +88,7 @@ async def prefixe_change(prefixe, message):
         return
     else:
         text_file = open("files\\"+str(id_serveur)+"\\param_bot.txt", "w")
-        text_file.write(msg[1] + "\n" + prefixe[1])
+        text_file.write(msg[1] + "\n" + prefixe[1] + "\n" + prefixe[2])
         msg_embed = {
             "color": 16768614,  # Couleur de la barre
             "fields": [
