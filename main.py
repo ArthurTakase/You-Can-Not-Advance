@@ -18,7 +18,7 @@ from rank import *
 from create_file import *
 from birth import *
 
-TOKEN = "NzE0OTY0NTg4OTc3OTc5NDgz.Xtuh-w.gaYOnUeAEv_6qmFDbyex0wxi7ho"  # Modifier get_token() par votre Token
+TOKEN = "Your Token"  # Modifier get_token() par votre Token
 
 # Variables gloables
 nbr_msg = 0
